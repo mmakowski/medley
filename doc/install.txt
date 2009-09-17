@@ -1,0 +1,36 @@
+$Id: install.txt,v 1.4 2005/05/08 10:02:57 maciek Exp $
+
+1. Running binary release
+
+You need Java Runtime Environment (JRE) version 1.4 or higher in order
+to run Medley. Version 1.5 is recommended. You can download latest JRE
+free of charge at http://java.sun.com/j2se/
+
+1.1. Windows
+
+If you have supported JRE installed, unzip the archive containing
+Medley into a directory of you choice and run medley.bat. If Medley
+doesn't start, check that you have javaw.exe in your $PATH.
+
+1.2. Linux
+
+If you have supported JRE installed, unpack the archive containing Medley
+into a directory of your choice and run medley.sh. If medley does not start,
+check that you have java executable in your $PATH and that Mozilla path
+specified in medley.sh is correct.
+
+
+2. Building Medley from source
+
+In order to build Medley you will require the following software installed
+on your machine:
+* Java 2 SDK 1.5.0 or later
+* Apache Ant 1.6.3 or later
+Unzip the source archive to a directory of your choice and in this 
+directory run:
+ant -Dplatform=<your platform>
+where <your platform> is one of 
+* win32
+* linux
+* macosx
+if you omit -Dplatform flag then win32 will be used by default.

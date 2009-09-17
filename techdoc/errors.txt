@@ -1,0 +1,18 @@
+---------------------------------------------------------------------------
+$Id: errors.txt,v 1.4 2005/08/19 18:09:21 maciek Exp $
+
+A description of error handling and error codes.
+
+author:  Maciek Makowski
+version: $Revision: 1.4 $ 
+date:    $Date: 2005/08/19 18:09:21 $
+---------------------------------------------------------------------------
+
+Error codes conventions
+
+Error codes are 5-digit numbers. First two digits determine the error
+type:
+01 -- data source error
+02 -- resource error
+03 -- UI error
+99 -- Other error

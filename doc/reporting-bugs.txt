@@ -1,0 +1,10 @@
+$Id: reporting-bugs.txt,v 1.1 2005/01/04 18:24:40 maciek Exp $
+
+You can send Medley bug reports to <mmakowski@vp.pl>.
+
+Please include the error details shown in the error message window and
+provide details of your operating system and JRE version in your
+report. You should also attach Medley log file which can be found in
+your user's home directory under
+Application Data\Maciek Makowski\Medley\log
+

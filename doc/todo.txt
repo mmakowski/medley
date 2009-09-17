@@ -1,0 +1,59 @@
+---------------------------------------------------------------------------
+$Id: todo.txt,v 1.22 2005/08/19 18:08:06 maciek Exp $
+
+Things to be done in the upcoming releases
+
+author:  Maciek Makowski
+version: $Revision: 1.22 $ 
+date:    $Date: 2005/08/19 18:08:06 $
+---------------------------------------------------------------------------
+
+Symbols:
+[+] new feature
+[*] change
+[-] fix
+
+Each group is divided into two sections: NOW contains tasks that must be 
+completed for the next milestone, LATER contains tasks that might be 
+completed later.
+
+
+1. Critical
+
+NOW:
+[+] Lending support
+LATER:
+[+] Reports and queries support
+
+
+2. Important
+
+NOW:
+[*] Enhance tags/ratings editor to show the hierarchy as a tree
+[-] Fix control sizes under GTK
+[+] Stand-alone utility to record auditions
+[+] Support for removing albums/records from collection (but retaining history)
+[-] Investigate Mozilla problems when running under Linux
+LATER:
+[+] Custom sorting for lists
+[-] Recover from minor exceptions (currently some exceptions cause program to terminate)
+[+] Full-text search
+[+] Application logo
+[+] Fancy views
+[+] Enhance Medley web page
+[+] Invent a way to move to Album editor from Record editor and to Record editor from Track editor
+[+] Cache common info like album title in Record and Track and sub-item count in Album and Record
+
+3. Tweak
+
+NOW:
+[+] Allow user to choose views
+LATER:
+[+] Allow default values for tags
+[+] Allow artist imports from arbitrary musical item
+[+] Show wait cursor during lengthy operations
+[+] Nice about box
+[+] Nice icons
+[+] Option to automatically import artists to new tracks/records
+[+] Automatic generation of sort names
+[+] Convenient date/time picker

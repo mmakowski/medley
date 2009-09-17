@@ -1,0 +1,14 @@
+$Id: credits.txt,v 1.6 2005/05/08 10:02:57 maciek Exp $
+
+Medley design and development:
+* Maciek Makowski <http://www.mmakowski.com>
+
+Medley uses following third-party components and libraries:
+* Standard Widget Toolkit (SWT) by Eclipse Foundation
+  <http://www.eclipse.org/swt/>
+* HSQLDB by The HSQLDB Team
+  <http://www.hsqldb.org>
+* FirebirdSQL Embedded by The FirebirdSQL Foundation 
+  <http://www.firebirdsql.com>	
+* JArgs by Steve Purcell
+  <http://jargs.sourceforge.net>

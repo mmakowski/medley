@@ -1,0 +1,46 @@
+---------------------------------------------------------------------------
+$Id: milestones.txt,v 1.6 2005/05/08 10:02:58 maciek Exp $
+
+A description of the milestone goals for Medley.
+
+author:  Maciek Makowski
+version: $Revision: 1.6 $ 
+date:    $Date: 2005/05/08 10:02:58 $
+---------------------------------------------------------------------------
+
+
+0.1	Basic UI in SWT                 01/2005
+Allows to add new albums, records, tracks and artists and browse
+existing entries.  
+
+0.2	Tag and Ranking support         02/2005
+Allows editing and defining and browsing tags and rankings for all the
+applicable objects. 
+
+0.3	Audition and lending support    06/2005?
+Allows adding audition info for albums, records and tracks as well as
+adding info on lending of albums and records; browsing for these
+is also available.
+
+0.4 Report generation               ?
+Allows to define queries and to build reports based on these queries.
+
+0.5 View definition                 ?
+Allows to define various views of the collection.
+
+0.6 History views                   ?
+Shows plots and graphs presenting the history of records owned.
+
+0.7	GUI rework                      ?
+GUI rework to make it more ergonomical.
+
+
+Future:
+
+1.x	CDDB connectivity
+Allows to download record info from CDDB/freedb. Other musical databases
+(e.g. MusicBrainz) might be considered as well.
+
+1.x	External database connectivity
+Allows to use external DBMS (e.g. MySQL) for storing the data.
+

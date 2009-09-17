@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+$Id: bugs.txt,v 1.2 2005/02/20 10:19:28 maciek Exp $
+
+Bugs found in Medley.
+
+author:  Maciek Makowski
+version: $Revision: 1.2 $ 
+date:    $Date: 2005/02/20 10:19:28 $
+---------------------------------------------------------------------------
+
+2005-02-20 I
+Control sizes are adjusted to Windows UI and often don't look good in Linux.
+

@@ -1,0 +1,175 @@
+---------------------------------------------------------------------------
+$Id: done.txt,v 1.20 2005/05/22 00:07:39 maciek Exp $
+
+The tasks completed.
+
+author:  Maciek Makowski
+version: $Revision: 1.20 $ 
+date:    $Date: 2005/05/22 00:07:39 $
+---------------------------------------------------------------------------
+
+Each task consists of
+1. date
+2. task type: [+] new feature, [*] change, [-] fix
+3. task severity: (C)ritical, (I)mportant, (T)weak
+4. task description
+
+
+2005-05-22 [+] C
+Implemented support for tracking album/record/track auditions.
+
+2005-05-08 [*] I
+Migrated to the new version (3.1M5a) of SWT library.
+
+2005-04-24 [*] I
+Improved handling of rating type/range changes. Now Medley is able
+to scale all existing scores to fit new range.
+
+2005-04-23 [-] I
+Suppressed UNIQUE violation exception thrown when two values were the 
+same when editing a tag value.
+
+2005-04-17 [+] T
+Added option to remember positions of data windows.
+
+2005-04-17 [+] I
+Added command line option to specify file to open.
+
+2005-04-15 [*] I
+Migrated preferences to Java Preferences API.
+
+2005-04-14 [*] T
+Migrated logging to Java Logging API.
+
+2005-04-10 [-] I
+The views are refreshed when items are added/deleted/changed.
+
+2005-04-10 [*] T
+The first artist added to an item is "main" by default.
+
+2005-03-20 [+] T
+Added preferences pane for ratings.
+
+2005-03-20 [+] I
+Latest rating score can be deleted.
+
+-- 2005-02-20 version 0.2 released ----------------------------------------
+
+2005-02-19 [+] I
+Implemented preferences window.
+
+2005-02-17 [+] I
+HSQLDB is now the default database engine (in order to
+enable running Medley on Linux).
+
+2005-02-06 [+] I
+Implemented framework for storing user's preferences.
+
+2005-02-05 [-] T
+Bulk loads (e.g. loading all albums from database) are performed
+more efficiently.
+
+2005-01-23 [+] C
+Support for ratings for all ratable items.
+
+2005-01-22 [+] T
+Introduced View menu.
+
+2005-01-22 [+] T
+Introduced progress indicator in the status bar during lengthy
+tasks.
+
+2005-01-22 [+] I
+Support for upgrading data file format to latest version.
+This required introducing new database format (1.7).
+
+2005-01-16 [+] I
+Support for view-specific menu items.
+
+2005-01-16 [-] I
+Support for non-western characters in the database (using Unicode).
+This required introducing new database format (1.5).
+
+2005-01-16 [+] C
+Support for editing tag values for all taggable items.
+
+2005-01-09 [+] C
+Support for creating and editing tags.
+
+-- 2005-01-05 version 0.1 released ----------------------------------------
+
+2005-01-04 [+] I
+Support for images
+
+2005-01-03 [+] I
+Support for creating new file
+
+2005-01-03 [+] T
+Added an indicator in the title bar that shows if current file has been 
+modified since last save
+
+2005-01-03 [+] T
+Implemented importing artists from super-items.
+
+2005-01-01 [+] C
+Created tracks view.
+
+2005-01-01 [+] T
+Implemented importing artists from sub-items.
+
+2005-01-01 [+] C
+Implemented editing of tracks.
+
+2004-12-30 [+] C
+Created records view.
+
+2004-12-30 [+] T
+Implemented caching of main artists sort strings for albums/records/tracks
+-- this allows for straightforward sorting by artist.
+
+2004-12-28 [-] T
+Implemented main artists caching -- this should speed up refreshing
+albums/records/tracks views.
+
+2004-12-27 [+] I
+Created application icon.
+
+2004-12-27 [+] I
+Created home page view.
+
+2004-12-26 [*] I
+Redesigned GUI.
+
+2004-12-25 [+] C
+Added support for creating/editing records.
+
+2004-10-23 [-] I
+When initial artist role for albums/records/tracks duplicates existing 
+one an exception (UNIQUE violation) is thrown
+=> safe names are generated for new items.
+
+2004-10-17 [+] I
+Added logging.
+
+2004-10-16 [+] I 
+Implemented handling of MANIFEST.MF files within .zmd archives.
+
+2004-10-16 [+] T
+Made exception window resizable.
+
+2004-08-09 [+] I
+Implemented data file structure as described in technical document data.txt
+
+2004-08-09 [-] C
+Error during zipping causes all the data in the original file to be lost. 
+=> zip first to temporary file and then if successful replace the original 
+file.
+
+2004-08-08 [*] I
+Keep one open connetion to the database (for efficiency).
+
+2004-08-08 [+] I
+A class containing UI defaults.
+
+2004-08-08 [+] T 
+The contents of a text box are selected when the control receives focus.

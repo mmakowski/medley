@@ -1,0 +1,22 @@
+$Id: release-notes.txt,v 1.1 2005/02/20 10:19:28 maciek Exp $
+
+Release notes for Medley 0.2
+
+
+1. What is new?
+
+* Support for custom tags and rankings.
+* Medley now runs on Linux platform. Please note that Medley has not
+  been tested thoroughly on Linux. It just runs.
+* Non-western (Unicode) characters are supported.
+* Support for converting data file to latest fromat/database version.
+* Preliminary preferences window has been implemented.
+* Progress indicator in the status bar for lengthy tasks.
+
+
+2. What has changed?
+
+* Underlying database engine has been changed from Firebird SQL to HSQLDB.
+  Firebird SQL is still supported in the Windows release, however, this 
+  support is likely to be dropped in future versions.
+* Menu layout has been revised, there are now view-specific menu items.

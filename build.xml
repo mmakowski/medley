@@ -1,0 +1,186 @@
+<project name="Medley" default="dist" basedir=".">
+  <description>
+      Medley build file.
+  </description>
+
+  <!-- set global properties for this build -->
+  <property name="jarname" value="medley"/>
+  <property name="version" value="0.2.1"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+  <property name="mmakowski.java.base" location="../mmakowski-common"/>
+  <property name="mmakowski.swt.base" location="../mmakowski-swt"/>
+  <property name="jvm.source" value="1.3"/>
+  <property name="jvm.target" value="1.3"/>
+  <!-- default platform is Windows. You can change it by running ant -Dplatform=<target platform> -->
+  <property name="platform" value="win32"/>
+
+  <!-- set paths -->
+  <path id="project.class.path">
+    <pathelement location="lib/common/hsqldb.jar"/>
+    <pathelement location="lib/common/jargs.jar"/>
+	<pathelement location="lib/common/mmakowski-java.jar"/>
+	<pathelement location="lib/common/mmakowski-swt.jar"/>
+    <pathelement location="lib/${platform}/swt.jar"/>
+  </path>
+
+
+  <!--== init ======================================================-->
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+
+  <!--== build-libs ================================================-->
+  <target name="build-libs"
+          description="compile and copy in mmakowski libraries">
+	<!-- mmakowski-java -->
+    <ant dir="${mmakowski.java.base}"
+         target="dist"
+         inheritAll="false" />
+    <copy todir="lib/common" file="${mmakowski.java.base}/dist/mmakowski-java.jar"/>
+	<!-- mmakowski-swt -->
+    <ant dir="${mmakowski.swt.base}"
+         target="dist"
+         inheritAll="false" />
+    <copy todir="lib/common" file="${mmakowski.swt.base}/dist/mmakowski-swt.jar"/>
+  </target>
+
+
+  <!--== compile ===================================================-->
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from src into ${build} -->
+    <javac srcdir="src"
+           destdir="${build}"
+           classpathref="project.class.path"
+           source="${jvm.source}"
+           target="${jvm.target}"
+           optimize="on">
+      <!--<compilerarg line="-Xlint:unchecked"/>-->
+    </javac>
+  </target>
+
+
+  <!--== init-dist =================================================-->
+  <target name="init-dist"
+        description="prepare distribution directories" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}"/>
+  </target>
+
+
+  <!--== dist ======================================================-->
+  <target name="dist" depends="clean,compile,init-dist"
+        description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/medley/lib"/>
+
+    <!-- Copy resource files to ${build} -->
+    <copy todir="${build}">
+      <fileset dir="src"
+               includes="**/*.properties"/>
+    </copy>
+
+    <!-- Put everything in ${build} into the ${jarname}.jar file -->
+    <jar jarfile="${dist}/medley/lib/${jarname}.jar" basedir="${build}" index="true">
+      <manifest>
+        <attribute name="Implementation-Title" value="Medley"/>
+        <attribute name="Implementation-Version" value="${version}"/>
+        <attribute name="Built-By" value="${user.name}"/>
+      </manifest>
+    </jar>
+
+    <!-- copy library files -->
+    <copy todir="${dist}/medley/lib">
+      <fileset dir="lib/common"/>
+      <fileset dir="lib/${platform}"/>
+    </copy>
+
+    <!-- copy images -->
+    <mkdir dir="${dist}/medley/img"/>
+	<copy todir="${dist}/medley/img">
+	  <fileset dir="img"/>
+	</copy>
+
+    <!-- copy templates -->
+    <mkdir dir="${dist}/medley/tmpl"/>
+	<copy todir="${dist}/medley/tmpl">
+	  <fileset dir="tmpl"/>
+	</copy>
+
+    <!-- copy miscellaneous files -->
+    <copy todir="${dist}/medley">
+      <fileset dir="distfiles/common"/>
+      <fileset dir="distfiles/${platform}"/>
+    </copy>
+
+    <!-- copy docs -->
+    <mkdir dir="${dist}/medley/doc"/>
+    <copy todir="${dist}/medley/doc">
+      <fileset dir="doc"/>
+    </copy>
+
+    <!-- zip all the files -->
+    <zip basedir="${dist}"
+         destfile="${dist}/medley-${version}-${platform}.zip"/>
+  </target>
+
+
+  <!--== clean =====================================================-->
+  <target name="clean"
+          description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+
+  <!--== clean-libs ================================================-->
+  <target name="clean-libs"
+          description="clean up library build data" >
+    <ant dir="${mmakowski.java.base}"
+         target="clean"
+         inheritAll="false" />
+    <ant dir="${mmakowski.swt.base}"
+         target="clean"
+         inheritAll="false" />
+  </target>
+
+
+  <!--== clean-all =================================================-->
+  <target name="clean-all" depends="clean,clean-libs"
+          description="clean up medley as well as libraries build data" >
+  </target>
+
+
+  <!--== dist-src ==================================================-->
+  <target name="dist-src" depends="build-libs,init-dist"
+          description="build a zip containing all the sources" >
+    <zip destfile="${dist}/medley-${version}-src.zip">
+      <fileset dir=".">
+        <include name="database/**"/>
+        <include name="distfiles/**"/>
+        <include name="techdoc/**"/>
+        <include name="img/**"/>
+        <include name="junit/**"/>
+        <include name="lib/**"/>
+        <include name="src/**"/>
+        <include name="techdoc/**"/>
+        <include name="tmpl/**"/>
+        <include name=".classpath"/>
+        <include name=".project"/>
+        <include name="build.xml"/>
+      </fileset>
+    </zip>
+  </target>
+
+
+  <!--== dist-all ==================================================-->
+  <target name="dist-all" depends="clean-libs,build-libs,dist,dist-src"
+          description="build binary and source zip"/>
+
+</project>

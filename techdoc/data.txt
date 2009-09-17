@@ -1,0 +1,79 @@
+---------------------------------------------------------------------------
+$Id: data.txt,v 1.5 2005/02/20 10:19:28 maciek Exp $
+
+A description of data storage and runtime strategy for Medley.
+
+author:  Maciek Makowski
+version: $Revision: 1.5 $ 
+date:    $Date: 2005/02/20 10:19:28 $
+---------------------------------------------------------------------------
+
+1. Data storage overview
+
+The data is stored in a format that can be queried using standard SQL
+queries. This allows extending Medley in future so that it supports
+external DBMS as data sources. Currently the priority is for Medley to
+have its own file format, as most users wouldn't bother to install a
+separate DBMS in order to store information about their record
+collection. The separate data file allows easy data transfer as well. 
+
+
+2. Data file format
+
+Originally, the Firebird Embedded (http://www.firebirdsql.org) database 
+has been chosen as the standalone data engine that is distributed with 
+Medley. However, lack of Firebird Embedded builds for systems other than 
+Microsoft Windows forced change of database engine. Currently HSQLDB 
+(http://www.hsqldb.org) is being used.
+User record data is conatined in a HSQLDB database, that is a set of files. 
+These files, along with some metadata information (e.g. specifying
+the version of Medley data file format) are compressed into a single
+archive (using zip). 
+The structure of files and directories within the compressed file 
+(file.zmd) is:
+
+file.zmd
+|
++- [img]             directory for cover images
+|  \- ...
+|
++- [data]            directory for database files
+|  \- ...            database files (dependant on DBMS used)
+|
++- [META-INF]        directory containing metainformation
+   \- MANIFEST.MF    manifest file in style of manifests from JARs
+
+Prior to zmd version 1.1 there has not been a separate data directory, but
+the single database file (medley.gdb for Firebird Embedded) has been stored 
+in the main directory of file.zmd.
+Data file format is flexible with respect to database engine used,
+i.e. MANIFEST.MF contains an entry Database-Type which tells Medley which
+database engine (and driver) to use when opening particular file.
+
+
+3. Runtime data handling
+
+When a data file is opened by Medley, its contents are extracted into
+a temporary directory. All the data modification operations performed
+by user immediately affect the extracted database file. Due to this
+data handling model, no undo feature is planned (although savepoints
+might be considered for that purpose in databases that support them). 
+When users chooses to save the file a zip file based on the temporary
+file is created and replaces the original data file.
+
+
+4. Data format conversion
+
+Medley supports converting its data files from earlier format versions to
+the latest one. This is done in following steps:
+
+* data from currently open database is exported to a text file. The text
+  file has custom format, with tags delimiting rows and columns. Care is
+  being taken to export dependent rows (through foreign keys) in correct 
+  order.
+* images are copied from currently open data file to a temporary directory.
+* current data source is saved under backup name (<name.zmd>.old) and new,
+  empty data file is opened.
+* data is imported from the text file to currently open database.
+* images are copied to the temporary directory of currently open data file.
+* the new data file is saved under name <name.zmd> 
